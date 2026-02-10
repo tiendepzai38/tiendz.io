@@ -1,330 +1,326 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-    <meta charset="UTF-8">
-    <title>Tết 2026 - Nhận Lì Xì</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ánh Trăng Còn Lại Sau Bình Minh</title>
+  <style>
+    :root {
+      --bg: #0a0a15;
+      --text: #e8e8ff;
+      --accent: #6d5dfc;
+      --accent-dark: #4a3ab5;
+      --card: #141426;
+      --border: #2a2a4a;
+      --glow: rgba(109, 93, 252, 0.35);
+    }
 
-    <!-- ========================= -->
-    <!-- CSS STYLE - GIAO DIỆN TẾT -->
-    <!-- ========================= -->
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.75;
+      min-height: 100vh;
+    }
 
-        body {
-            font-family: "Segoe UI", Arial, sans-serif;
-            background: linear-gradient(#ffecd2, #fcb69f);
-            min-height: 100vh;
-            color: #333;
-        }
+    .container { max-width: 1080px; margin: 0 auto; padding: 20px; }
 
-        header {
-            background: #c70000;
-            color: #fff;
-            padding: 25px;
-            text-align: center;
-        }
+    header {
+      text-align: center;
+      padding: 80px 20px 50px;
+      background: linear-gradient(to bottom, #0a0a15, #141426);
+    }
 
-        header h1 {
-            font-size: 36px;
-            margin-bottom: 10px;
-        }
+    h1 {
+      font-size: 3.6rem;
+      color: var(--accent);
+      margin-bottom: 16px;
+      text-shadow: 0 0 30px var(--glow);
+    }
 
-        header p {
-            font-size: 16px;
-        }
+    .author { font-size: 1.2rem; color: #b0b0ff; margin-bottom: 30px; }
+    .description {
+      max-width: 760px;
+      margin: 0 auto 50px;
+      font-size: 1.1rem;
+      color: #d0d0ff;
+      opacity: 0.92;
+    }
 
-        nav {
-            margin-top: 15px;
-        }
+    .chapter-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 22px;
+      padding: 30px 0;
+      transition: opacity 0.6s ease;
+    }
 
-        nav a {
-            color: #fff;
-            text-decoration: none;
-            margin: 0 10px;
-            font-weight: bold;
-        }
+    .chapter-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+      cursor: pointer;
+      position: relative;
+    }
 
-        nav a:hover {
-            text-decoration: underline;
-        }
+    .chapter-card:hover {
+      transform: translateY(-12px) scale(1.04);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.4), 0 0 30px var(--glow);
+      border-color: var(--accent);
+    }
 
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 30px auto;
-        }
+    .chapter-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, transparent, var(--glow));
+      opacity: 0;
+      transition: opacity 0.4s;
+      pointer-events: none;
+      z-index: 1;
+    }
 
-        section {
-            background: #fff;
-            padding: 25px;
-            margin-bottom: 25px;
-            border-radius: 8px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
+    .chapter-card:hover::before { opacity: 0.7; }
 
-        section h2 {
-            color: #c70000;
-            margin-bottom: 15px;
-        }
+    .chapter-number {
+      background: linear-gradient(135deg, var(--accent-dark), var(--accent));
+      color: white;
+      padding: 16px 24px;
+      font-weight: 700;
+      font-size: 1.25rem;
+      letter-spacing: 0.5px;
+    }
 
-        .intro {
-            font-size: 18px;
-            line-height: 1.7;
-        }
+    .chapter-title {
+      padding: 20px 24px;
+      font-size: 1.15rem;
+      font-weight: 500;
+    }
 
-        /* ========================= */
-        /* KHU VỰC LÌ XÌ */
-        /* ========================= */
-        .lixi-box {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            margin-top: 20px;
-        }
+    .content {
+      display: none;
+      background: var(--card);
+      margin: 40px 0;
+      padding: 50px 40px;
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.7s ease;
+    }
 
-        .lixi-card {
-            flex: 1 1 250px;
-            background: #fff3cd;
-            border: 2px solid #ffcc00;
-            border-radius: 10px;
-            padding: 20px;
-            text-align: center;
-            position: relative;
-        }
+    .content.active {
+      display: block;
+      opacity: 1;
+      transform: translateY(0);
+    }
 
-        .lixi-card h3 {
-            margin-bottom: 10px;
-            color: #d48806;
-        }
+    .content h2 {
+      color: var(--accent);
+      margin-bottom: 32px;
+      font-size: 2.1rem;
+      text-align: center;
+      text-shadow: 0 0 15px var(--glow);
+    }
 
-        .lixi-card p {
-            margin-bottom: 15px;
-        }
+    .content p, .content div { margin-bottom: 1.5em; font-size: 1.07rem; }
 
-        .lixi-card button {
-            background: #c70000;
-            color: #fff;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-        }
+    .back-btn {
+      display: inline-block;
+      margin: 0 0 35px 0;
+      padding: 12px 32px;
+      background: var(--accent);
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 1.05rem;
+      font-weight: 500;
+      transition: all 0.3s;
+    }
 
-        .lixi-card button:hover {
-            background: #a50000;
-        }
+    .back-btn:hover {
+      background: var(--accent-dark);
+      transform: translateX(-6px);
+      box-shadow: 0 8px 25px rgba(109, 93, 252, 0.3);
+    }
 
-        .money {
-            font-size: 24px;
-            color: green;
-            margin-top: 10px;
-            display: none;
-        }
+    footer {
+      text-align: center;
+      padding: 80px 20px 50px;
+      color: #666688;
+      font-size: 0.95rem;
+    }
 
-        /* ========================= */
-        /* BẢNG LỊCH SỬ */
-        /* ========================= */
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 15px;
-        }
-
-        table th, table td {
-            border: 1px solid #ddd;
-            padding: 10px;
-            text-align: center;
-        }
-
-        table th {
-            background: #c70000;
-            color: #fff;
-        }
-
-        /* ========================= */
-        /* FORM CHÚC TẾT */
-        /* ========================= */
-        input, textarea {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 10px;
-        }
-
-        textarea {
-            resize: vertical;
-        }
-
-        button.submit {
-            background: green;
-            color: #fff;
-            border: none;
-            padding: 10px 20px;
-        }
-
-        /* ========================= */
-        /* FOOTER */
-        /* ========================= */
-        footer {
-            background: #c70000;
-            color: #fff;
-            text-align: center;
-            padding: 20px;
-            margin-top: 40px;
-        }
-
-        /* ========================= */
-        /* RESPONSIVE */
-        /* ========================= */
-        @media (max-width: 768px) {
-            header h1 {
-                font-size: 26px;
-            }
-        }
-    </style>
+    @media (max-width: 700px) {
+      h1 { font-size: 2.6rem; }
+      .chapter-list { grid-template-columns: 1fr; }
+      .content { padding: 40px 25px; }
+    }
+  </style>
 </head>
-
 <body>
 
-    <!-- ========================= -->
-    <!-- HEADER -->
-    <!-- ========================= -->
-    <header>
-        <h1>🧧 TẾT 2026 - NHẬN LÌ XÌ ONLINE 🧧</h1>
-        <p>Chúc mừng năm mới - An khang thịnh vượng - Vạn sự như ý</p>
-        <nav>
-            <a href="#gioithieu">Giới thiệu</a>
-            <a href="#lixi">Nhận lì xì</a>
-            <a href="#lichsu">Lịch sử</a>
-            <a href="#chuctet">Chúc Tết</a>
-        </nav>
-    </header>
+<div class="container">
 
-    <div class="container">
+  <header>
+    <h1>Ánh Trăng Còn Lại Sau Bình Minh</h1>
+    <div class="author">Tác giả: Việt Tiến</div>
+    <p class="description">
+      Khi mọi thứ kết thúc, người ta thường nghĩ ánh trăng sẽ biến mất cùng màn đêm.<br>
+      Nhưng đôi khi, nó vẫn lặng lẽ treo đó — nhạt nhòa, xa xăm, nhưng chưa từng thực sự rời đi.
+    </p>
+  </header>
 
-        <!-- ========================= -->
-        <!-- GIỚI THIỆU -->
-        <!-- ========================= -->
-        <section id="gioithieu">
-            <h2>🎆 Giới thiệu</h2>
-            <p class="intro">
-                Đây là website demo chủ đề Tết Nguyên Đán.
-                Bạn có thể bấm nhận lì xì, xem lịch sử,
-                gửi lời chúc và tận hưởng không khí Tết.
-            </p>
-        </section>
+  <div class="chapter-list" id="chapterList"></div>
 
-        <!-- ========================= -->
-        <!-- NHẬN LÌ XÌ -->
-        <!-- ========================= -->
-        <section id="lixi">
-            <h2>🧧 Nhận Lì Xì</h2>
+  <div id="chapterContent" class="content">
+    <button class="back-btn" onclick="showList()">← Quay lại danh sách chương</button>
+    <h2 id="chapterTitle"></h2>
+    <div id="chapterText"></div>
+  </div>
 
-            <div class="lixi-box">
+</div>
 
-                <div class="lixi-card">
-                    <h3>Lì xì may mắn</h3>
-                    <p>Bấm để nhận tiền may mắn đầu năm</p>
-                    <button onclick="nhanLiXi(this)">Nhận</button>
-                    <div class="money"></div>
-                </div>
+<footer>
+  © 2026 – Truyện được viết để chữa lành (hoặc để khóc thêm một chút) • Đọc miễn phí
+</footer>
 
-                <div class="lixi-card">
-                    <h3>Lì xì tài lộc</h3>
-                    <p>Cầu tài cầu lộc cả năm</p>
-                    <button onclick="nhanLiXi(this)">Nhận</button>
-                    <div class="money"></div>
-                </div>
+<script>
+  const chapters = [
+    { 
+      num: 1, 
+      title: "Mưa Dưới Ánh Đèn Đường", 
+      text: `Cô đứng dưới cột đèn đường đã cháy một nửa bóng. Mưa rơi xiên xiên, từng giọt đập vào vai áo khoác mỏng làm ướt cả lớp áo len bên trong. Điện thoại trong túi rung liên hồi — lần thứ chín trong vòng mười lăm phút. Cô không rút ra xem. Không cần xem cũng biết là ai.<br><br>
+      Đã ba tháng kể từ ngày anh nói câu cuối cùng: "Anh nghĩ mình nên dừng lại ở đây." Giọng anh lúc đó bình thản đến lạ, như đang bàn về thời tiết chứ không phải kết thúc một mối tình bốn năm. Cô gật đầu, mỉm cười gượng, rồi quay lưng bước đi. Không khóc. Không níu kéo. Chỉ im lặng.<br><br>
+      Nhưng đêm nay, dưới ánh đèn vàng vọt và mưa lạnh buốt, cô chợt nhận ra mình chưa từng thực sự dừng lại. Cô vẫn đứng đây, vẫn chờ một điều gì đó không bao giờ đến. Có lẽ là lời xin lỗi. Có lẽ là một cái ôm từ phía sau. Hoặc chỉ đơn giản là một tin nhắn: "Anh nhớ em."<br><br>
+      Điện thoại lại rung. Lần này cô rút ra, nhìn màn hình hiện lên cái tên quen thuộc. Không phải tin nhắn. Là cuộc gọi. Cô để chuông reo hết hồi, rồi màn hình tối lại. Cô cất điện thoại, ngẩng mặt lên trời. Mưa rơi vào mắt, mặn chát.<br><br>
+      Cô nhớ ngày đầu gặp anh cũng mưa như thế này. Anh đưa ô che cho cô, cười ngượng nghịu: "Mưa to quá, em ướt hết rồi." Lúc ấy cô chỉ nghĩ: người lạ mà tốt bụng thật. Ai ngờ bốn năm sau, chính người ấy lại để cô đứng dưới mưa một mình.<br><br>
+      Cô bước đi, đôi giày vải thấm nước kêu lép kẹp. Mỗi bước chân như nặng thêm một chút ký ức. Cô tự nhủ phải về nhà, phải tắm nước nóng, phải ngủ. Nhưng trong đầu vẫn vang lên một câu hỏi không lời đáp: "Nếu đêm nay anh gọi lại lần nữa, mình có nghe máy không?"<br><br>
+      Cô không biết. Có lẽ là có. Có lẽ là không. Chỉ biết rằng, dù có nghe hay không, cơn mưa này vẫn sẽ rơi. Và ánh đèn đường vẫn sẽ cháy một nửa, như tình cảm của cô lúc này — chưa tắt hẳn, nhưng cũng chẳng còn đủ sáng.`
+    },
+    { 
+      num: 2, 
+      title: "Chiếc Vé Tàu Một Chiều", 
+      text: `Cậu tìm thấy tấm vé tàu trong túi áo khoác cũ, kẹp giữa hai tờ hóa đơn đã ngả vàng. Ngày in: 14/06/2023. Ga đi: Sài Gòn. Ga đến: Đà Nẵng. Ghế số 12, toa 6. Tấm vé cậu mua để đưa cô đi trốn khỏi thành phố ồn ào, để hai người có thể bắt đầu lại từ đầu.<br><br>
+      Cuối cùng chỉ mình cậu lên tàu. Cô không đến. Tin nhắn cuối cùng cô gửi là: "Em xin lỗi. Em không đi được." Không giải thích. Không lý do. Chỉ một câu ngắn ngủi.<br><br>
+      Cậu vẫn lên tàu, ngồi ở ghế 12, nhìn ra cửa sổ. Cảnh vật lướt qua nhanh đến chóng mặt. Cậu nghĩ nếu mình nhắm mắt lại, có thể giả vờ cô đang ngồi bên cạnh, đầu tựa vai cậu, khẽ hát theo bài nhạc đang phát qua tai nghe. Nhưng khi mở mắt ra, chỉ có ghế trống và mùi cà phê rẻ tiền của toa tàu.<br><br>
+      Đêm đó, ở một nhà nghỉ nhỏ ven biển Đà Nẵng, cậu ngồi trên ban công, cầm tấm vé đã nhàu nhĩ. Gió biển mặn chát thổi qua mặt. Cậu xé từng mảnh nhỏ, thả xuống. Những mảnh giấy trắng bay lượn như cánh bướm bị thương, rồi rơi xuống mặt đường ướt át.<br><br>
+      Cậu nhớ lần cuối hai người đi biển cùng nhau. Cô chạy chân trần trên cát, cười lớn đến mức tóc bay rối. Cậu đứng chụp ảnh, nghĩ rằng khoảnh khắc này sẽ kéo dài mãi. Nhưng mọi thứ kết thúc nhanh hơn cậu tưởng.<br><br>
+      Sáng hôm sau cậu dậy sớm, đứng nhìn mặt trời mọc. Đẹp đến nao lòng. Nhưng cậu không chụp ảnh. Không gửi cho ai. Chỉ lặng lẽ nghĩ: "Nếu có kiếp sau, mình sẽ không mua vé một chiều nữa. Mình sẽ mua hai vé khứ hồi. Và sẽ không để cô ấy phải nói lời xin lỗi."`
+    },
+    { 
+      num: 3, 
+      title: "Những Đoạn Chat Không Gửi", 
+      text: `Anh mở khung chat đã lưu 912 ngày không ai trả lời. Hơn 1400 tin nhắn một chiều. Có những đoạn anh viết lúc 2 giờ sáng, có những dòng chỉ vỏn vẹn "Em ngủ chưa?", có những đoạn dài cả trang kể về một ngày bình thường — chỉ để che giấu câu hỏi thực sự: "Em có còn nhớ anh không?"<br><br>
+      Hôm nay anh lại soạn một tin: "Hôm nay anh đi ngang quán cà phê cũ. Bàn góc vẫn còn đó. Người ta đã thay ghế mới, màu xanh nhạt. Em thích màu xanh mà, đúng không? Anh ngồi một lúc, gọi ly đen đá như em hay uống. Vẫn đắng như ngày nào."<br><br>
+      Ngón tay dừng trên nút gửi. Anh nhìn dòng chữ một lúc lâu, rồi nhấn xóa. Lại xóa. Như 912 ngày trước đó.<br><br>
+      Anh đóng laptop, nằm dài trên sofa, nhìn trần nhà loang lổ vết ố nước. Điện thoại sáng lên — thông báo từ group chat công việc. Không phải cô. Anh cười nhạt, tự hỏi tại sao mình vẫn giữ khung chat ấy, không xóa, không ẩn, không block.<br><br>
+      Có lẽ vì xóa đi đồng nghĩa với việc thừa nhận rằng mọi thứ thực sự đã kết thúc. Và anh chưa sẵn sàng. Chưa sẵn sàng để thế giới này chỉ còn lại một mình anh, không có cô trong bất kỳ góc nhỏ nào — dù chỉ là một dòng chữ không gửi.`
+    },
+    { 
+      num: 4, 
+      title: "Bức Thư Cuối Cùng", 
+      text: `Bì thư màu xanh nhạt, nét chữ nghiêng nghiêng quen thuộc. Không có ngày tháng. Chỉ có một câu cuối cùng: "Nếu có kiếp sau, anh đừng tìm em nữa. Em mệt rồi."<br><br>
+      Anh đọc đi đọc lại, như thể chỉ cần đọc đủ nhiều lần thì câu chữ sẽ thay đổi. Nhưng không. Nó vẫn ở đó, lạnh lùng và dứt khoát.<br><br>
+      Bức thư được gửi đến nhà anh cách đây hai tuần, nhưng anh chỉ dám mở hôm nay. Tay run run khi xé phong bì. Bên trong là tờ giấy nhỏ, vài dòng ngắn gọn, và một chiếc vòng tay bạc mảnh — món quà sinh nhật anh tặng cô năm 20 tuổi.<br><br>
+      Anh cầm chiếc vòng, lướt ngón tay qua những vết xước nhỏ. Mỗi vết xước là một kỷ niệm: lần cô làm rơi lúc rửa chén, lần cô đeo khi hai người đi phượt, lần cô tháo ra đặt vào tay anh và nói "Em trả anh đây".<br><br>
+      Anh không khóc. Chỉ ngồi im rất lâu trong căn phòng tối, nghe tiếng đồng hồ tích tắc. Rồi anh đứng dậy, mở ngăn kéo, đặt chiếc vòng và bức thư vào cùng một chỗ với những thứ khác: ảnh chụp chung, vé xem phim, mẩu giấy ghi chú cô viết "Nhớ ăn sáng nhé".<br><br>
+      Anh đóng ngăn kéo lại. Không khóa. Vì anh biết, dù có khóa thì nỗi nhớ vẫn sẽ tìm cách chui ra.`
+    },
+    { 
+      num: 5, 
+      title: "Cà Phê Lạnh Từ Hôm Qua", 
+      text: `Ly cà phê vẫn còn nguyên trên bàn làm việc. Đã 17 tiếng trôi qua. Anh không uống. Vì vị đắng hôm qua đủ rồi, không cần thêm hôm nay.<br><br>
+      Anh nhìn ly cà phê nguội lạnh, nhớ những buổi sáng cô pha cho anh. Cô luôn pha đậm hơn một chút, rồi cười: "Anh thích đắng mà, đúng không?" Anh gật đầu, dù thật ra anh chỉ thích đắng khi có cô ngồi đối diện.<br><br>
+      Bây giờ bàn làm việc trống trải. Không còn ai nhắc anh uống nước, không còn ai để lại dấu son mờ trên cốc. Chỉ còn anh và ly cà phê lạnh ngắt.<br><br>
+      Anh đứng dậy, đổ hết cà phê đi. Rửa cốc thật sạch. Nhưng khi đặt lại lên bàn, anh vẫn thấy thiếu một thứ gì đó. Không phải cà phê. Mà là hơi ấm của một người từng ngồi đây, từng cười với anh.<br><br>
+      Anh tự pha một ly mới. Lần này pha nhạt hơn. Uống một ngụm. Vẫn đắng. Nhưng ít nhất, lần này là anh tự chọn mức đắng cho mình.`
+    },
+    { 
+      num: 6, 
+      title: "Con Đường Không Còn Người", 
+      text: `Con đường làng ngày xưa đông vui, giờ chỉ còn tiếng gió. Cậu đi bộ từ đầu làng đến cuối làng, như tìm lại một người đã không còn chờ ở hiên nhà nữa.<br><br>
+      Cậu dừng lại trước ngôi nhà cũ. Cửa khép hờ, rèm cửa bay nhẹ. Bên trong không còn tiếng cười, không còn mùi cơm mẹ nấu. Chỉ có sự im lặng bao trùm.<br><br>
+      Cậu ngồi xuống bậc thềm, nhìn ra cánh đồng. Ngày xưa cô hay ngồi đây, gối đầu lên vai cậu, kể về ước mơ đi xa. Cậu hứa sẽ đưa cô đi. Cuối cùng cậu đi một mình.<br><br>
+      Một cụ già đi ngang qua, nhận ra cậu, hỏi: "Về thăm nhà à cháu?" Cậu gật đầu, cười gượng. Cụ vỗ vai: "Nhớ giữ sức khỏe. Cuộc đời còn dài."<br><br>
+      Cậu nhìn theo bóng cụ khuất dần. Cuộc đời còn dài thật. Nhưng dài để làm gì khi người mình muốn cùng đi đã không còn ở đây nữa?`
+    },
+    { 
+      num: 7, 
+      title: "Bài Hát Cuối Trong Điện Thoại", 
+      text: `Bài hát dừng lại ở 1:47. Đoạn điệp khúc cô thích nhất. Giờ mỗi lần nghe lại, cậu chỉ nghe được tiếng nấc của chính mình.<br><br>
+      Cậu không xóa bài hát. Không block ca sĩ. Chỉ để nó nằm đó, như một vết sẹo chưa lành. Thỉnh thoảng cậu vẫn mở ra, ấn play, rồi ngồi im nghe đến hết.<br><br>
+      Lời bài hát kể về một cuộc chia tay nhẹ nhàng. Nhưng thực tế của cậu không nhẹ nhàng chút nào. Nó đau, nó dai dẳng, nó khiến cậu thức trắng đêm.<br><br>
+      Một hôm cậu quyết định xóa playlist cũ. Nhưng khi đến bài hát này, ngón tay dừng lại. Cậu không xóa được. Cuối cùng cậu chỉ đổi tên playlist thành "Những thứ chưa thể quên".`
+    },
+    { 
+      num: 8, 
+      title: "Chiếc Nhẫn Trong Hộp Gỗ", 
+      text: `Chiếc nhẫn bạc nhỏ xíu nằm im lìm trong hộp gỗ mun. Không ai đeo. Không ai trả. Nó chỉ nằm đó, như một lời hẹn ước bị thời gian làm mất hiệu lực.<br><br>
+      Anh mở hộp ra mỗi tối, nhìn chiếc nhẫn một lúc, rồi đóng lại. Không đeo. Không vứt. Chỉ giữ.<br><br>
+      Có lần anh thử đeo vào ngón áp út. Vẫn vừa khít như ngày đầu. Nhưng cảm giác không còn ấm nữa. Chỉ còn lạnh.<br><br>
+      Anh cất hộp vào ngăn kéo sâu nhất. Nhưng đêm đó anh lại lấy ra. Vì dù có cất đi đâu, nó vẫn ở trong tim anh.`
+    },
+    { 
+      num: 9, 
+      title: "Bình Minh Không Có Cô", 
+      text: `Mặt trời mọc. Trời xanh. Gió mát. Mọi thứ vẫn đẹp. Chỉ thiếu một người đứng cạnh anh, khẽ nói: "Đẹp thật đấy..." Thế giới bỗng trở nên vô nghĩa.<br><br>
+      Anh đứng trên ban công, nhìn ánh bình minh. Ngày xưa cô hay dậy sớm, kéo anh ra ngắm. Giờ anh tự dậy. Nhưng không còn ai để chia sẻ.<br><br>
+      Anh chụp một bức ảnh, định gửi cho cô như thói quen cũ. Rồi nhớ ra mình không còn số cô nữa. Ảnh bị xóa ngay lập tức.<br><br>
+      Anh thở dài, tự nhủ: "Mình sẽ quen thôi." Nhưng sâu thẳm, anh biết mình không muốn quen với một bình minh không có cô.`
+    },
+    { 
+      num: 10, 
+      title: "Ánh Trăng Còn Lại", 
+      text: `Anh không còn tìm cô nữa. Không còn kiểm tra tin nhắn cũ, không còn dừng xe trước quán cà phê, không còn nghe lén những bài hát cô từng thích. Cuộc sống vẫn tiếp diễn, chậm rãi và nhạt nhẽo.<br><br>
+      Nhưng mỗi khi trời tối, anh vẫn ra ban công, ngẩng lên nhìn mặt trăng. Không phải để nhớ cô. Chỉ là để xác nhận rằng nó vẫn ở đó — dù nhạt nhòa, dù xa xăm, dù không còn sáng rực như ngày xưa.<br><br>
+      Có lẽ tình cảm cũng giống ánh trăng. Không còn là thứ soi sáng cả bầu trời, nhưng vẫn tồn tại, lặng lẽ, như một lời nhắc nhở rằng: đã từng có một người rất quan trọng.<br><br>
+      Anh khẽ mỉm cười, lần đầu tiên sau rất lâu, không mang theo vị đắng. Rồi quay vào nhà, đóng cửa ban công lại.<br><br>
+      Ánh trăng vẫn ở ngoài kia. Và lần này, anh không thấy buồn nữa. Chỉ thấy nhẹ nhõm. Vì cuối cùng, anh đã học được cách sống chung với nỗi nhớ — thay vì để nó sống thay mình.`
+    }
+  ];
 
-                <div class="lixi-card">
-                    <h3>Lì xì bình an</h3>
-                    <p>Sức khỏe dồi dào</p>
-                    <button onclick="nhanLiXi(this)">Nhận</button>
-                    <div class="money"></div>
-                </div>
+  const listEl = document.getElementById("chapterList");
+  const contentEl = document.getElementById("chapterContent");
+  const titleEl = document.getElementById("chapterTitle");
+  const textEl = document.getElementById("chapterText");
 
-            </div>
-        </section>
+  chapters.forEach(ch => {
+    const card = document.createElement("div");
+    card.className = "chapter-card";
+    card.innerHTML = `
+      <div class="chapter-number">Chương ${ch.num.toString().padStart(2,'0')}</div>
+      <div class="chapter-title">${ch.title}</div>
+    `;
+    card.addEventListener("click", () => showChapter(ch));
+    listEl.appendChild(card);
+  });
 
-        <!-- ========================= -->
-        <!-- LỊCH SỬ LÌ XÌ -->
-        <!-- ========================= -->
-        <section id="lichsu">
-            <h2>📜 Lịch sử nhận lì xì</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Lần</th>
-                        <th>Số tiền</th>
-                        <th>Thời gian</th>
-                    </tr>
-                </thead>
-                <tbody id="history">
-                    <!-- JS thêm dữ liệu -->
-                </tbody>
-            </table>
-        </section>
+  function showChapter(chapter) {
+    titleEl.textContent = `Chương ${chapter.num}: ${chapter.title}`;
+    textEl.innerHTML = chapter.text;
+    
+    listEl.style.opacity = "0";
+    setTimeout(() => {
+      listEl.style.display = "none";
+      contentEl.classList.add("active");
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }, 500);
+  }
 
-        <!-- ========================= -->
-        <!-- CHÚC TẾT -->
-        <!-- ========================= -->
-        <section id="chuctet">
-            <h2>🎉 Gửi lời chúc Tết</h2>
-            <input type="text" placeholder="Tên của bạn">
-            <textarea rows="4" placeholder="Lời chúc Tết..."></textarea>
-            <button class="submit" onclick="guiChucTet()">Gửi lời chúc</button>
-        </section>
-
-    </div>
-
-    <!-- ========================= -->
-    <!-- FOOTER -->
-    <!-- ========================= -->
-    <footer>
-        <p>© 2026 Tết Online | Demo HTML CSS JS</p>
-    </footer>
-
-    <!-- ========================= -->
-    <!-- JAVASCRIPT -->
-    <!-- ========================= -->
-    <script>
-        let count = 0;
-
-        function nhanLiXi(btn) {
-            const tien = Math.floor(Math.random() * 900) + 100;
-            const card = btn.parentElement;
-            const moneyBox = card.querySelector(".money");
-
-            moneyBox.style.display = "block";
-            moneyBox.innerText = tien + ".000 VNĐ";
-
-            count++;
-
-            const time = new Date().toLocaleString("vi-VN");
-            const row = `
-                <tr>
-                    <td>${count}</td>
-                    <td>${tien}.000 VNĐ</td>
-                    <td>${time}</td>
-                </tr>
-            `;
-
-            document.getElementById("history").innerHTML += row;
-            btn.disabled = true;
-            btn.innerText = "Đã nhận";
-        }
-
-        function guiChucTet() {
-            alert("🎊 Chúc bạn năm mới vui vẻ và nhiều lì xì! 🎊");
-        }
-
-        console.log("Trang Tết đã load xong!");
-    </script>
+  function showList() {
+    contentEl.classList.remove("active");
+    setTimeout(() => {
+      listEl.style.display = "grid";
+      listEl.style.opacity = "1";
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }, 600);
+  }
+</script>
 
 </body>
 </html>
