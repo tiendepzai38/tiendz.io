@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Tết 2026 - Nhận Lì Xì</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- ========================= -->
+    <!-- CSS STYLE - GIAO DIỆN TẾT -->
+    <!-- ========================= -->
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Segoe UI", Arial, sans-serif;
+            background: linear-gradient(#ffecd2, #fcb69f);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        header {
+            background: #c70000;
+            color: #fff;
+            padding: 25px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 16px;
+        }
+
+        nav {
+            margin-top: 15px;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 10px;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 30px auto;
+        }
+
+        section {
+            background: #fff;
+            padding: 25px;
+            margin-bottom: 25px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        section h2 {
+            color: #c70000;
+            margin-bottom: 15px;
+        }
+
+        .intro {
+            font-size: 18px;
+            line-height: 1.7;
+        }
+
+        /* ========================= */
+        /* KHU VỰC LÌ XÌ */
+        /* ========================= */
+        .lixi-box {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .lixi-card {
+            flex: 1 1 250px;
+            background: #fff3cd;
+            border: 2px solid #ffcc00;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            position: relative;
+        }
+
+        .lixi-card h3 {
+            margin-bottom: 10px;
+            color: #d48806;
+        }
+
+        .lixi-card p {
+            margin-bottom: 15px;
+        }
+
+        .lixi-card button {
+            background: #c70000;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .lixi-card button:hover {
+            background: #a50000;
+        }
+
+        .money {
+            font-size: 24px;
+            color: green;
+            margin-top: 10px;
+            display: none;
+        }
+
+        /* ========================= */
+        /* BẢNG LỊCH SỬ */
+        /* ========================= */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        table th, table td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: center;
+        }
+
+        table th {
+            background: #c70000;
+            color: #fff;
+        }
+
+        /* ========================= */
+        /* FORM CHÚC TẾT */
+        /* ========================= */
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+
+        textarea {
+            resize: vertical;
+        }
+
+        button.submit {
+            background: green;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+        }
+
+        /* ========================= */
+        /* FOOTER */
+        /* ========================= */
+        footer {
+            background: #c70000;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+        }
+
+        /* ========================= */
+        /* RESPONSIVE */
+        /* ========================= */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 26px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ========================= -->
+    <!-- HEADER -->
+    <!-- ========================= -->
+    <header>
+        <h1>🧧 TẾT 2026 - NHẬN LÌ XÌ ONLINE 🧧</h1>
+        <p>Chúc mừng năm mới - An khang thịnh vượng - Vạn sự như ý</p>
+        <nav>
+            <a href="#gioithieu">Giới thiệu</a>
+            <a href="#lixi">Nhận lì xì</a>
+            <a href="#lichsu">Lịch sử</a>
+            <a href="#chuctet">Chúc Tết</a>
+        </nav>
+    </header>
+
+    <div class="container">
+
+        <!-- ========================= -->
+        <!-- GIỚI THIỆU -->
+        <!-- ========================= -->
+        <section id="gioithieu">
+            <h2>🎆 Giới thiệu</h2>
+            <p class="intro">
+                Đây là website demo chủ đề Tết Nguyên Đán.
+                Bạn có thể bấm nhận lì xì, xem lịch sử,
+                gửi lời chúc và tận hưởng không khí Tết.
+            </p>
+        </section>
+
+        <!-- ========================= -->
+        <!-- NHẬN LÌ XÌ -->
+        <!-- ========================= -->
+        <section id="lixi">
+            <h2>🧧 Nhận Lì Xì</h2>
+
+            <div class="lixi-box">
+
+                <div class="lixi-card">
+                    <h3>Lì xì may mắn</h3>
+                    <p>Bấm để nhận tiền may mắn đầu năm</p>
+                    <button onclick="nhanLiXi(this)">Nhận</button>
+                    <div class="money"></div>
+                </div>
+
+                <div class="lixi-card">
+                    <h3>Lì xì tài lộc</h3>
+                    <p>Cầu tài cầu lộc cả năm</p>
+                    <button onclick="nhanLiXi(this)">Nhận</button>
+                    <div class="money"></div>
+                </div>
+
+                <div class="lixi-card">
+                    <h3>Lì xì bình an</h3>
+                    <p>Sức khỏe dồi dào</p>
+                    <button onclick="nhanLiXi(this)">Nhận</button>
+                    <div class="money"></div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ========================= -->
+        <!-- LỊCH SỬ LÌ XÌ -->
+        <!-- ========================= -->
+        <section id="lichsu">
+            <h2>📜 Lịch sử nhận lì xì</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Lần</th>
+                        <th>Số tiền</th>
+                        <th>Thời gian</th>
+                    </tr>
+                </thead>
+                <tbody id="history">
+                    <!-- JS thêm dữ liệu -->
+                </tbody>
+            </table>
+        </section>
+
+        <!-- ========================= -->
+        <!-- CHÚC TẾT -->
+        <!-- ========================= -->
+        <section id="chuctet">
+            <h2>🎉 Gửi lời chúc Tết</h2>
+            <input type="text" placeholder="Tên của bạn">
+            <textarea rows="4" placeholder="Lời chúc Tết..."></textarea>
+            <button class="submit" onclick="guiChucTet()">Gửi lời chúc</button>
+        </section>
+
+    </div>
+
+    <!-- ========================= -->
+    <!-- FOOTER -->
+    <!-- ========================= -->
+    <footer>
+        <p>© 2026 Tết Online | Demo HTML CSS JS</p>
+    </footer>
+
+    <!-- ========================= -->
+    <!-- JAVASCRIPT -->
+    <!-- ========================= -->
+    <script>
+        let count = 0;
+
+        function nhanLiXi(btn) {
+            const tien = Math.floor(Math.random() * 900) + 100;
+            const card = btn.parentElement;
+            const moneyBox = card.querySelector(".money");
+
+            moneyBox.style.display = "block";
+            moneyBox.innerText = tien + ".000 VNĐ";
+
+            count++;
+
+            const time = new Date().toLocaleString("vi-VN");
+            const row = `
+                <tr>
+                    <td>${count}</td>
+                    <td>${tien}.000 VNĐ</td>
+                    <td>${time}</td>
+                </tr>
+            `;
+
+            document.getElementById("history").innerHTML += row;
+            btn.disabled = true;
+            btn.innerText = "Đã nhận";
+        }
+
+        function guiChucTet() {
+            alert("🎊 Chúc bạn năm mới vui vẻ và nhiều lì xì! 🎊");
+        }
+
+        console.log("Trang Tết đã load xong!");
+    </script>
+
+</body>
+</html>
